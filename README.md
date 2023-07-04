@@ -1,4 +1,4 @@
-# Phonebook System
+# Phonebook Management System
 
 The Phonebook System is a simple and intuitive command-line application, albeit it may evolve to support a Graphical User Interface, designed to manage and organize contact information efficiently. It allows users to store, retrieve, and manage their contacts in a convenient and user-friendly manner.
 
@@ -15,7 +15,7 @@ The Phonebook System is a simple and intuitive command-line application, albeit 
 - **Extensibility**: Developers can easily extend the system's functionality by adding custom features or integrating it with other applications.
 
 
-## Installation
+## Installation Process
 
 1. Clone the repository to your local machine.
 2. Ensure that you have Python 3.x installed.
