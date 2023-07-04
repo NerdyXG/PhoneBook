@@ -28,11 +28,11 @@ The Phonebook System is a simple and intuitive command-line application, albeit 
 The Phonebook System supports the following commands:
 
 - `add`: Add a new contact to the phonebook.
-- `view`: View details of a specific contact.
 - `edit`: Modify the details of an existing contact.
 - `delete`: Delete a contact from the phonebook.
 - `search`: Search for contacts based on specific criteria.
 - `categories`: Manage contact categories.
+- `display`: Displays all the contact available on the phonebook.
 - `backup`: Create a backup of the contact database.
 - `restore`: Restore a backup of the contact database.
 - `import`: Import contacts from an external file.

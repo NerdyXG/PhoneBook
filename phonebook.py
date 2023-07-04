@@ -33,8 +33,12 @@ class Phonebook:
 		if self.contacts:
 			for name, number in self.contacts.items():
 				print(f"Name: {name}\tNumber: {number}")
-		else:
-			print("Phonebook is empty!!!\n*******")
+
+	def edit_contact(self, name):
+		print("\n*******")
+		if name.title() in self.contacts:
+			...
+
 
 
 
@@ -65,7 +69,7 @@ def action(flag):
 		sys.exit("Exiting the Phonebook System...")
 
 	else:
-		sys.exit("Exiting the Phonebook System...")
+		sys.exit("...")
 
 
 # driver code
