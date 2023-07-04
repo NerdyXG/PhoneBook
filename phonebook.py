@@ -7,14 +7,14 @@ class Phonebook:
 
 	# adds a new contact to the dictionary
 	def add_contact(self, name, number, **kwargs):
-		self.contacts[name.title()] = {"Number": number, "Email": kwargs.get("email"), "Category": kwargs.get("category")}
+		self.contacts[name] = {"Number": number, "Email": kwargs.get("email"), "Category": kwargs.get("category")}
 		print(f"\n*******{name} has been added successfully!*******")
 
 
 	def delete_contact(self, name):
 		print("\n*******")
-		if name.title() in self.contacts:
-			del self.contacts[name.title()]
+		if name in self.contacts:
+			del self.contacts[name]
 			print(f"\n{name} has been deleted successfully!")
 		else:
 			print(f"\n{name} not found in the Phonebook\n*******")
@@ -45,7 +45,25 @@ class Phonebook:
 	def edit_contact(self, name):
 		print("\n*******")
 		if name.title() in self.contacts:
-			...
+			new_name = input("To change the current name, type a new name: ")
+			new_number = input("To change the current number, type a new number: ")
+			new_email = input("To change the current email, type a new email: ")
+			new_category = input("To change the current category, type a new category: ")
+
+			# if a new_* is not supplied, then we update it to the value of the previous one
+			if not new_name:
+				new_name = self.contacts.keys().get(name)
+			if not new_number:
+				new_number = self.contacts.values()["Number"]
+			if not new_email:
+				new_name = self.contacts.values()["Email"]
+			if not new_category:
+				new_name = self.contacts.values()["Category"]
+
+			del self.contacts[name]
+			self.contacts[new_name.strip().title()] = {"Number": new_number, "Email": new_email.strip().lower(), "Category": new_category.strip().title()}
+		else:
+			print(f"{name} not found in the Phonebook")
 
 
 
@@ -58,22 +76,26 @@ phonebook = Phonebook()
 # carries out the user's choice
 def action(flag):
 	if flag == "add":
-		name = input("Name: ")
-		number = input("Number: ")
-		email = input("Email (If not available, input N/A): ")
-		category = input("Category (If not available, input N/A): ")
+		name = input("Name: ").strip().title()
+		number = input("Number: ").strip()
+		email = input("Email (If not available, input N/A): ").strip().lower()
+		category = input("Category (If not available, input N/A): ").strip().title()
 		phonebook.add_contact(name, number, email=email, category=category)
 
 	elif flag == "delete":
-		name = input("Name: ")
+		name = input("Name: ").strip().title()
 		phonebook.delete_contact(name)
 
 	elif flag == "search":
-		name = input("Name: ")
+		name = input("Name: ").strip().title()
 		phonebook.search_contact(name)
 
 	elif flag == "display_all":
 		phonebook.display_all_contacts()
+
+	elif flag == "edit":
+		name = input("Name: ").strip().title()
+		phonebook.edit_contact(name)
 
 	elif flag == "exit":
 		sys.exit("Exiting the Phonebook System...")
@@ -89,7 +111,8 @@ def main():
 		2: "delete",
 		3: "search",
 		4: "display_all",
-		5: "exit"
+		5: "edit",
+		6: "exit"
 	}
 	# checks for command-line args
 	if len(sys.argv) == 2:
@@ -97,12 +120,12 @@ def main():
 
 	while True:
 		print("\n*******Phonebook System*******")
-		print("\n1. Add Contact\n2. Delete Contact\n3. Search Contact\n4. Display All Contacts\n5. Exit")
+		print("\n1. Add Contact\n2. Delete Contact\n3. Search Contact\n4. Display All Contacts\n5. Edit\n6. Exit")
 
 		# ensures that the correct input is supplied
 		try:
 			user_choice = int(input("\nEnter your choice: "))
-			if user_choice < 1 or user_choice > 5:
+			if user_choice < 1 or user_choice > 6:
 				raise ValueError("\nInput an integer between 1 and 5a")
 			else:
 				action(userChoiceMap.get(user_choice))
