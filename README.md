@@ -1,6 +1,6 @@
 # Phonebook System
 
-The Phonebook System is a simple and intuitive command-line application, albeit it may evolve to support a Graphical User Interface, is designed to manage and organize contact information efficiently. It allows users to store, retrieve, and manage their contacts in a convenient and user-friendly manner.
+The Phonebook System is a simple and intuitive command-line application, albeit it may evolve to support a Graphical User Interface, designed to manage and organize contact information efficiently. It allows users to store, retrieve, and manage their contacts in a convenient and user-friendly manner.
 
 
 ## Features
