@@ -7,7 +7,7 @@ class Phonebook:
 
 	# adds a new contact to the dictionary
 	def add_contact(self, name, number, **kwargs):
-		self.contacts[name.title()] = {"Number:": number, "Email:": kwargs.get("email"), "Category:": kwargs.get("category")}
+		self.contacts[name.title()] = {"Number": number, "Email": kwargs.get("email"), "Category": kwargs.get("category")}
 		print(f"\n*******{name} has been added successfully!*******")
 
 
@@ -20,12 +20,15 @@ class Phonebook:
 			print(f"\n{name} not found in the Phonebook\n*******")
 
 
+	# searches for contacts that contains the specified string
 	def search_contact(self, name):
 		print("\n*******")
-		if name.title() in self.contacts:
-			print(f"\nName: {name.title()}\nNumber: {self.contacts[name.title()]}")
-		else:
-			print(f"\n{name} not found in the Phonebook\n*******")
+		for key, value in self.contacts.items():
+			if name.lower() in key.lower():
+				print(f"Name: {key}", end="\t")
+				for k, v in value.items():
+					print(f"{k}: {v}\t", end="\t")	
+			print()			
 
 
 	def display_all_contacts(self):
@@ -34,7 +37,7 @@ class Phonebook:
 			for name, number in self.contacts.items():
 				print(f"Name: {name}", end="\t")
 				for k, v in number.items():
-					print(f"{k} {v}\t", end="\t")
+					print(f"{k}: {v}\t", end="\t")
 				print()
 		else:
 			print("\n*******Phonebook is empty!!!\n*******")
@@ -57,8 +60,8 @@ def action(flag):
 	if flag == "add":
 		name = input("Name: ")
 		number = input("Number: ")
-		email = input("Email: ")
-		category = input("Category: ")
+		email = input("Email (If not available, input N/A): ")
+		category = input("Category (If not available, input N/A): ")
 		phonebook.add_contact(name, number, email=email, category=category)
 
 	elif flag == "delete":
@@ -100,11 +103,11 @@ def main():
 		try:
 			user_choice = int(input("\nEnter your choice: "))
 			if user_choice < 1 or user_choice > 5:
-				raise ValueError("\nInput an integer between 1 and 5")
+				raise ValueError("\nInput an integer between 1 and 5a")
 			else:
 				action(userChoiceMap.get(user_choice))
 		except ValueError:
-			print("\nInput an integer between 1 and 5")
+			print("\nInput an integer between 1 and 5b")
 
 
 if __name__ == "__main__":
