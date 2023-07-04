@@ -5,9 +5,9 @@ class Phonebook:
 	def __init__(self):
 		self.contacts = {}
 
-
-	def add_contact(self, name, number):
-		self.contacts[name.title()] = number
+	# adds a new contact to the dictionary
+	def add_contact(self, name, number, **kwargs):
+		self.contacts[name.title()] = {"Number:": number, "Email:": kwargs.get("email"), "Category:": kwargs.get("category")}
 		print(f"\n*******{name} has been added successfully!*******")
 
 
@@ -32,7 +32,12 @@ class Phonebook:
 		print("\n*******\nAll Contacts\n*******\n")
 		if self.contacts:
 			for name, number in self.contacts.items():
-				print(f"Name: {name}\tNumber: {number}")
+				print(f"Name: {name}", end="\t")
+				for k, v in number.items():
+					print(f"{k} {v}\t", end="\t")
+				print()
+		else:
+			print("\n*******Phonebook is empty!!!\n*******")
 
 	def edit_contact(self, name):
 		print("\n*******")
@@ -52,7 +57,9 @@ def action(flag):
 	if flag == "add":
 		name = input("Name: ")
 		number = input("Number: ")
-		phonebook.add_contact(name, number)
+		email = input("Email: ")
+		category = input("Category: ")
+		phonebook.add_contact(name, number, email=email, category=category)
 
 	elif flag == "delete":
 		name = input("Name: ")
@@ -102,3 +109,4 @@ def main():
 
 if __name__ == "__main__":
 	main()
+
