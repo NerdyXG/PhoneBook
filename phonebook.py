@@ -78,37 +78,38 @@ phonebook = Phonebook()
 
 # ensures a value is supplied 
 def valid(value):
-	while True:
-		if not value:
-			value = input(f"{value}")
-		else:
-			break
+	while not value:
+		value = input("Input a valid string: ")
+	return value
 
 
 # carries out the user's choice
 def action(flag):
 	if flag == "add":
-		name = input("Name: ").strip().title()
-		# name = valid(name)
-		number = input("Number: ").strip()
-		# valid(number)
+		name = input("Name: ")
+		name = valid(name).strip().title()
+		number = input("Number: ")
+		valid(number).strip()
 		email = input("Email (If not available, input N/A): ").strip().lower()
 		category = input("Category (If not available, input N/A): ").strip().title()
 		phonebook.add_contact(name, number, email=email, category=category)
 
 	elif flag == "delete":
-		name = input("Name: ").strip().title()
+		name = input("Name: ")
+		name = valid(name).strip().title()
 		phonebook.delete_contact(name)
 
 	elif flag == "search":
-		name = input("Name: ").strip().title()
+		name = input("Name: ")
+		name = valid(name).strip().title()
 		phonebook.search_contact(name)
 
 	elif flag == "display_all":
 		phonebook.display_all_contacts()
 
 	elif flag == "edit":
-		name = input("Name: ").strip().title()
+		name = input("Name: ")
+		name = valid(name).strip().title()
 		phonebook.edit_contact(name)
 
 	elif flag == "exit":
