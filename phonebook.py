@@ -68,7 +68,7 @@ class Phonebook:
 				new_name = var["Category"]
 
 			del self.contacts[name]
-			self.contacts[new_name] = {"Number": new_number, "Email": new_email, "Category": new_category}
+			self.contacts[new_name] = {"Number": new_number, "Email": new_email, "Address": new_address,"Category": new_category}
 		else:
 			print(f"{name} not found in the Phonebook")
 
