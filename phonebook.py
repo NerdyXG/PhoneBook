@@ -7,7 +7,7 @@ class Phonebook:
 
 	# adds a new contact to the dictionary
 	def add_contact(self, name, number, **kwargs):
-		self.contacts[name] = {"Number": number, "Email": kwargs.get("email"), "Category": kwargs.get("category")}
+		self.contacts[name] = {"Number": number, "Email": kwargs.get("email"), "Address": kwargs.get("address"),"Category": kwargs.get("category")}
 		print(f"\n*******{name} has been added successfully!*******")
 
 
@@ -48,6 +48,7 @@ class Phonebook:
 			new_name = input("To change the current name, type a new name: ")
 			new_number = input("To change the current number, type a new number: ")
 			new_email = input("To change the current email, type a new email: ")
+			new_address = input("To change the current address, type a new address: ")
 			new_category = input("To change the current category, type a new category: ")
 
 			# if a new_* is not supplied, then we update it to the value of the previous one
@@ -59,6 +60,9 @@ class Phonebook:
 			if not new_email:
 				var = self.contacts.values()
 				new_email = var["Email"]
+			if not new_address:
+				var = self.contacts.values()
+				new_address = var["Address"]
 			if not new_category:
 				var = self.contacts.values()
 				new_name = var["Category"]
@@ -90,9 +94,16 @@ def action(flag):
 		name = valid(name).strip().title()
 		number = input("Number: ")
 		valid(number).strip()
-		email = input("Email (If not available, input N/A): ").strip().lower()
-		category = input("Category (If not available, input N/A): ").strip().title()
-		phonebook.add_contact(name, number, email=email, category=category)
+		email = input("Email: ").strip().lower()
+		if not email:
+			email = "N/A"
+		address = input("Address: ").strip().lower()
+		if not address:
+			address = "N/A"
+		category = input("Category: ").strip().title()
+		if not category:
+			category = "N/A"
+		phonebook.add_contact(name, number, email=email,address=address, category=category)
 
 	elif flag == "delete":
 		name = input("Name: ")
