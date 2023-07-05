@@ -6,7 +6,7 @@ The Phonebook System is a simple and intuitive command-line application, albeit 
 ## Features
 
 - **Contact Management**: Easily add, view, edit, and delete contacts within the system.
-- **Search Functionality**: Find specific contacts using various search parameters such as name, phone number, or email address.
+- **Search Functionality**: Find specific contacts using various search parameters such as name, phone number, category, or email address.
 - **Category Organization**: Categorize your contacts into different groups for better organization and easy access.
 - **Data Persistence**: The system ensures that your contact data is securely stored and can be accessed across multiple sessions.
 - **Backup and Restore**: Create backups of your contact database and restore them when needed, safeguarding your valuable information.
