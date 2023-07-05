@@ -54,14 +54,17 @@ class Phonebook:
 			if not new_name:
 				new_name = self.contacts.keys().get(name)
 			if not new_number:
-				new_number = self.contacts.values()["Number"]
+				var = self.contacts.values()
+				new_number = var["Number"]
 			if not new_email:
-				new_name = self.contacts.values()["Email"]
+				var = self.contacts.values()
+				new_email = var["Email"]
 			if not new_category:
-				new_name = self.contacts.values()["Category"]
+				var = self.contacts.values()
+				new_name = var["Category"]
 
 			del self.contacts[name]
-			self.contacts[new_name.strip().title()] = {"Number": new_number, "Email": new_email.strip().lower(), "Category": new_category.strip().title()}
+			self.contacts[new_name] = {"Number": new_number, "Email": new_email, "Category": new_category}
 		else:
 			print(f"{name} not found in the Phonebook")
 
@@ -73,11 +76,22 @@ class Phonebook:
 phonebook = Phonebook()
 
 
+# ensures a value is supplied 
+def valid(value):
+	while True:
+		if not value:
+			value = input(f"{value}")
+		else:
+			break
+
+
 # carries out the user's choice
 def action(flag):
 	if flag == "add":
 		name = input("Name: ").strip().title()
+		# name = valid(name)
 		number = input("Number: ").strip()
+		# valid(number)
 		email = input("Email (If not available, input N/A): ").strip().lower()
 		category = input("Category (If not available, input N/A): ").strip().title()
 		phonebook.add_contact(name, number, email=email, category=category)
